@@ -1,19 +1,18 @@
 ﻿using MyGarage.Enum;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Type = MyGarage.Enum.Type;
+
 
 namespace MyGarage.Minivan
 {
-    class Ford:MinivanCar
+    class Ford : MinivanCar
     {
         public CarModels Model;
         public CarBrands Brand;
         private DateTime _year;
+        private int _price;
 
-        public DateTime ProcutionYear
+        public DateTime Production
         {
             get
             {
@@ -21,7 +20,7 @@ namespace MyGarage.Minivan
             }
             set
             {
-                if (value < DateTime.Now)
+                if (DateTime.Now > value)
                 {
                     _year = value;
                 }
@@ -29,11 +28,15 @@ namespace MyGarage.Minivan
             }
         }
 
-        public Ford(DateTime productionyear)
+
+        public Ford(DateTime productionyear, int price, ConsoleColor color, Type type)
         {
+            _year = productionyear;
+            _price = price;
             Model = CarModels.MinivanVan;
             Brand = CarBrands.Ford;
-            _year = productionyear;
+            base.consoleColor = color;
+            base._type = type;
 
         }
         public Ford()
@@ -41,43 +44,27 @@ namespace MyGarage.Minivan
 
         }
 
+        public override int this[CarBrands index]
+        {
+            get
+            {
+                return base[index];
+            }
+            set
+            {
+                base[index] = value;
+            }
+        }
+
         public override string ToString()
         {
             return $"Brand {Brand}\n" +
                    $"Model {Model}\n" +
-                   $"Production Year {ProcutionYear}\n" +
-                   $"Sit count {SitCount}\n";
+                   $"Production Year {Production}\n" +
+                   $"Price is {_price}$\n" +
+                   base.ToString();
+
         }
-
-        public override void DoorCount()
-        {
-            Console.WriteLine("The ford has 3 doors");
-        }
-
-        public new string this[int index]
-        {
-            get
-            {
-
-                if (index >= 0 && index <= size - 1)
-                {
-                    tmp = namelist[index];
-                }
-                else
-                {
-                    tmp = "";
-                }
-                Console.WriteLine("Ford new indexer");
-                return (tmp);
-            }
-            set
-            {
-                if (index >= 0 && index <= size - 1)
-                {
-                    namelist[index] = value;
-                }
-            }
-        }
-
     }
+
 }

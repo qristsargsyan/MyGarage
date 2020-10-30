@@ -1,9 +1,6 @@
 ﻿using MyGarage.Enum;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Type = MyGarage.Enum.Type;
 
 namespace MyGarage.Sedan
 {
@@ -12,6 +9,7 @@ namespace MyGarage.Sedan
         public CarModels Model;
         public CarBrands Brand;
         private DateTime _year;
+        private int _price;
 
         public DateTime Production
         {
@@ -21,7 +19,7 @@ namespace MyGarage.Sedan
             }
             set
             {
-                if (value < DateTime.Now)
+                if (DateTime.Now > value)
                 {
                     _year = value;
                 }
@@ -29,11 +27,19 @@ namespace MyGarage.Sedan
             }
         }
 
-        public Hyundai(DateTime productionyear)
+
+        public Hyundai(DateTime productionyear, int price, ConsoleColor color, Type type)
         {
+            _year = productionyear;
+            _price = price;
             Model = CarModels.Sedan;
             Brand = CarBrands.Hyundai;
-            _year = productionyear;
+            base.consoleColor = color;
+            base._type = type;
+
+        }
+        public Hyundai()
+        {
 
         }
 
@@ -42,7 +48,21 @@ namespace MyGarage.Sedan
             return $"Brand {Brand}\n" +
                    $"Model {Model}\n" +
                    $"Production Year {Production}\n" +
-                   $"Sit count {SitCount}\n";
+                   $"Price is {_price}$\n" +
+                   base.ToString();
+
+        }
+
+        public override int this[CarBrands index]
+        {
+            get
+            {
+                return base[index];
+            }
+            set
+            {
+                base[index] = value;
+            }
         }
     }
 }

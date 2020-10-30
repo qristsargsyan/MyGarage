@@ -1,79 +1,43 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MyGarage.Enum;
+using System;
+using Type = MyGarage.Enum.Type;
 
 namespace MyGarage
 {
-    class Car
+    abstract class Car
     {
-        public int TypeCount { get; set; }
+        protected int sitCount;
+        public ConsoleColor consoleColor;
+        public Type _type;
 
-        public Car(int count)
+        public Car(ConsoleColor consoleColor, Type type)
         {
-            TypeCount = count;
+            this.consoleColor = consoleColor;
+            _type = type;
+        }
+
+        public Car()
+        {
+
         }
 
         public override string ToString()
         {
-            return $"Age {TypeCount}\n";
+            return $"Color {consoleColor}\nType {_type}\n";
         }
 
-        public override int GetHashCode()
+        public virtual int this[CarBrands index]
         {
-            return this.TypeCount.GetHashCode();
+            get
+            {
+                Console.Write("In garage the count of this car brands is ");
+                return (int)index;
+            }
+            set
+            {
+                index = (CarBrands)value;
+            }
         }
-
-        public override bool Equals(object obj)
-        {
-            return obj is Car car &&
-                   TypeCount == car.TypeCount;
-        }
-
-
-        public static int operator +(Car car, Car car1)
-        {
-            return car.TypeCount + car1.TypeCount;
-        }
-
-        public static int operator -(Car car, Car car1)
-        {
-            return car.TypeCount - car1.TypeCount;
-        }
-
-        public static bool operator ==(Car car, Car car1)
-        {
-            return car.TypeCount == car1.TypeCount;
-        }
-
-        public static bool operator !=(Car car, Car car1)
-        {
-            return car.TypeCount != car1.TypeCount;
-        }
-
-
-        public static bool operator <=(Car car, Car car1)
-        {
-            return car.TypeCount <= car1.TypeCount;
-        }
-
-        public static bool operator >=(Car car, Car car1)
-        {
-            return car.TypeCount >= car1.TypeCount;
-        }
-
-        public static implicit operator int(Car number)
-        {
-            Console.WriteLine(number.ToString());
-            return number.TypeCount;
-        }
-
-        public static explicit operator Car(int num)
-        {
-            return new Car(num);
-
-        }
-
+        
     }
 }

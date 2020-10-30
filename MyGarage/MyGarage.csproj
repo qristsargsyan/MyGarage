@@ -44,9 +44,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Car.cs" />
-    <Compile Include="Cars.cs" />
     <Compile Include="Enum\CarBrands.cs" />
     <Compile Include="Enum\CarModels.cs" />
+    <Compile Include="Enum\Type.cs" />
     <Compile Include="GeneralGarage.cs" />
     <Compile Include="Minivan\Ford.cs" />
     <Compile Include="Minivan\Honda.cs" />

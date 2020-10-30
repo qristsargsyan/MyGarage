@@ -1,18 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MyGarage.Enum
+﻿namespace MyGarage.Enum
 {
     enum CarBrands
     {
+        None,
         AstonMartin=5,
         Mersedes=3,
         BMW=1,
-        Lexus=10,
         Opel=11,
+        Lexus=10,
         Toyota=2,
         Jeep=15,
         Chevrolet=14,

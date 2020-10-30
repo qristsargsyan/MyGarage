@@ -1,35 +1,32 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MyGarage
 {
     class GeneralGarage
     {
 
-
-        public int count = 15;
-        public string location;
-        public DateTime open;
-        public DateTime close;
-        public int floor;
+        public string Location{ get; private set; }
+        public DateTime Open { get; private set; }
+        public DateTime Close { get; private set; }
+        private static int generalCarsCount;
+    
 
         public GeneralGarage()
         {
-            location = "Los Anjeles Trumb Street";
-            open = DateTime.Parse("09:00");
-            close = DateTime.Parse("21:00");
-            floor = 2;
+            Location = "Los Anjeles Trumb Street";
+            Open = DateTime.Parse("09:00");
+            Close = DateTime.Parse("21:00");
+            generalCarsCount = 115;
+
         }
 
         public override string ToString()
         {
-            return $"Location  {location}\n" +
-                   $"Openint at  {open}\n" +
-                   $"Closing at  {close}\n" +
-                   $"Floor  {floor}\n";
+            return $"Location  {Location}\n" +
+                   $"Openint at  {Open}\n" +
+                   $"Closing at  {Close}\n" +
+                   $"General count of cars {generalCarsCount}\n";
+                   
         }
     }
 }

@@ -1,18 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MyGarage.Sedan
+﻿namespace MyGarage.Sedan
 {
-    class SedanCar
+    class SedanCar:Car
     {
-        public int SitCount;
 
         public SedanCar()
         {
-            SitCount = 4;
+            sitCount = 4;
+        }
+
+        public override string ToString()
+        {
+            return base.ToString() + $"Sit count {sitCount}";
         }
     }
 }

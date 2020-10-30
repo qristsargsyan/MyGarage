@@ -1,18 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MyGarage.Sport
+﻿namespace MyGarage.Sport
 {
-    class SportCar
+    class SportCar:Car
     {
-        public int SitCount;
 
         public SportCar()
         {
-            SitCount = 2;
+            sitCount = 2;
+        }
+
+        public override string ToString()
+        {
+            return base.ToString() + $"Sit count {sitCount}";
         }
     }
 }

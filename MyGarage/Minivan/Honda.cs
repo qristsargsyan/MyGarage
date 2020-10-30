@@ -1,17 +1,16 @@
 ﻿using MyGarage.Enum;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Type = MyGarage.Enum.Type;
+
 
 namespace MyGarage.Minivan
 {
-    class Honda:MinivanCar
+    class Honda : MinivanCar
     {
         public CarModels Model;
         public CarBrands Brand;
         private DateTime _year;
+        private int _price;
 
         public DateTime Production
         {
@@ -21,7 +20,7 @@ namespace MyGarage.Minivan
             }
             set
             {
-                if (value < DateTime.Now)
+                if (DateTime.Now > value)
                 {
                     _year = value;
                 }
@@ -29,11 +28,15 @@ namespace MyGarage.Minivan
             }
         }
 
-        public Honda(DateTime productionyear)
+
+        public Honda(DateTime productionyear, int price, ConsoleColor color, Type type)
         {
+            _year = productionyear;
+            _price = price;
             Model = CarModels.MinivanVan;
             Brand = CarBrands.Honda;
-            _year = productionyear;
+            base.consoleColor = color;
+            base._type = type;
 
         }
         public Honda()
@@ -46,37 +49,37 @@ namespace MyGarage.Minivan
             return $"Brand {Brand}\n" +
                    $"Model {Model}\n" +
                    $"Production Year {Production}\n" +
-                   $"Sit count {SitCount}\n";
+                   $"Price is {_price}$\n" +
+                   base.ToString();
+
         }
 
-        public override void DoorCount()
-        {
-            Console.WriteLine("The Honda has 8 doors");
-        }
-
-        public override string this[int index]
+        public override int this[CarBrands index]
         {
             get
             {
-
-                if (index >= 0 && index <= size - 1)
-                {
-                    tmp = namelist[index];
-                }
-                else
-                {
-                    tmp = "";
-                }
-                Console.WriteLine("Honda override indexer");
-                return (tmp);
+                return base[index];
             }
             set
             {
-                if (index >= 0 && index <= size - 1)
-                {
-                    namelist[index] = value;
-                }
+                base[index] = value;
             }
+        }
+
+
+        public override bool Equals(object obj)
+        {
+            if (obj is Honda)
+            {
+                Honda honda = (Honda)obj;
+                return honda._price.Equals(this._price);
+            }
+            return false;
+
+        }
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
         }
     }
 }
